@@ -5,7 +5,6 @@ on:
     branches:
       - main
 
-# 添加权限配置
 permissions:
   contents: write
 
@@ -25,18 +24,15 @@ jobs:
       - name: 安装依赖
         run: npm install
 
-      - name: 注入 后端url .env
+      - name: 注入后端 URL 到 .env
         run: |
           echo "VITE_API_BASE_URL=${{ secrets.API_BASE_URL }}" >> .env
-          echo "后端 url 获取成功"
 
       - name: 构建项目
-        run: npm run dist
+        run: npm run build
 
       - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          allow_empty_commit: true
-          publish_branch: gh-pages
