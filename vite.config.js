@@ -10,4 +10,10 @@ export default defineConfig({
     port: 8080,
     allowedHosts: ['108sn64tu8943.vicp.fun']
   },
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    },
+  },
+  assetsDir: 'static',
 })
