@@ -31,7 +31,7 @@ jobs:
           echo "后端 url 获取成功"
 
       - name: 构建项目
-        run: npm run build
+        run: npm run dist
 
       - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

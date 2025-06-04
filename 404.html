@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+        // Get the base URL from the current path
+        const base = window.location.pathname.split('/')[1];
+        // Redirect to the main index.html file with the base URL included
+        window.location.replace(`/${base}/index.html`);
+    </script>
+</head>
+
+<body>
+    If you are not redirected automatically, follow this <a href="/index.html">link to the main page</a>.
+</body>
+
+</html>
