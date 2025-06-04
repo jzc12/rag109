@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+
+// src\APP.jsx
+
+// src/App.jsx
+
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import AdminKnowledgeBase from './pages/AdminKnowledgeBase';
 import Login from './pages/Login';
 import Chat from './pages/Chat';
@@ -20,3 +25,4 @@ function App() {
 }
 
 export default App;
+
