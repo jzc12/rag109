@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { fileURLToPath } from 'url'
 
 // https://vite.dev/config/
-export default defineConfig({
-  base: '/rag109/',
+export default defineConfig({//
   plugins: [react()],
   server: {                                     // 允许内网穿透的映射网址公网访问
     host: '0.0.0.0',
