@@ -7,7 +7,7 @@ function createMessageElement(text, className) {
 
 import { get_backend_url } from '../../../src/utils/url.js'
 
-const backend_url = get_backend_url;
+const backend_url = await get_backend_url();
 
 // 会话管理类
 class SessionManager {
