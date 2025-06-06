@@ -23,25 +23,32 @@ const fetchWithTimeout = async (url, timeoutMillis = 3000) => {
 };
 
 export const selectAvailableBackend = async () => {
-    const urls = import.meta.env.VITE_API_BASE_URLS?.split(",").map(u => u.trim());
-    if (!urls || urls.length === 0) return null;
+    const rawEnv = import.meta.env.VITE_API_BASE_URL;
+    console.log("VITE_API_BASE_URLS =", rawEnv);
+    const urls = rawEnv?.split(",").map(u => u.trim());
+    if (!urls || urls.length === 0) {
+        console.warn("没有配置任何后端地址！");
+        return null;
+    }
 
     for (const url of urls) {
         try {
             const res = await fetchWithTimeout(`${url}${HEALTH_ENDPOINT}`, 3000);
             if (res.ok) {
-                console.log("backend avilable!")
+                console.log("backend available:", url);
                 avilable_url = url;
                 return url;
+            } else {
+                console.warn(`后端 ${url} 返回非 200：`, res.status);
             }
         } catch (e) {
-            // 请求失败或超时则跳过
-            continue;
+            console.warn(`请求 ${url} 失败：`, e.message);
         }
     }
 
     return null;
 };
+
 
 
 export const get_backend_url = () => {
