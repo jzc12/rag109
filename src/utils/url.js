@@ -24,7 +24,7 @@ const fetchWithTimeout = async (url, timeoutMillis = 3000) => {
 
 export const selectAvailableBackend = async () => {
     const rawEnv = import.meta.env.VITE_API_BASE_URL;
-    console.log("VITE_API_BASE_URLS =", rawEnv);
+    //console.log("VITE_API_BASE_URLS =", rawEnv);
     const urls = rawEnv?.split(",").map(u => u.trim());
     if (!urls || urls.length === 0) {
         console.warn("没有配置任何后端地址！");
@@ -52,6 +52,6 @@ export const selectAvailableBackend = async () => {
 
 
 export const get_backend_url = () => {
-    console.log(avilable_url)
+    //console.log(avilable_url)
     return avilable_url;
 };

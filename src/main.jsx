@@ -14,7 +14,6 @@ function Root() {
       await selectAvailableBackend()
         .then(url => {
           setBackendUrl(url);
-          console.log("ac");
           setLoading(false);
         });
     };
