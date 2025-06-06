@@ -30,6 +30,7 @@ export const selectAvailableBackend = async () => {
         try {
             const res = await fetchWithTimeout(`${url}${HEALTH_ENDPOINT}`, 3000);
             if (res.ok) {
+                console.log("backend avilable!")
                 avilable_url = url;
                 return url;
             }

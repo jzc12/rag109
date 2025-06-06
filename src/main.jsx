@@ -13,6 +13,7 @@ function Root() {
     selectAvailableBackend()
       .then(url => {
         setBackendUrl(url);
+        console.log("ac");
         setLoading(false);
       })
       .catch(error => {
