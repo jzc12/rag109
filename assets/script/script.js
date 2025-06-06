@@ -4,8 +4,8 @@ function createMessageElement(text, className) {
     messageDiv.textContent = text;
     return messageDiv;
 }
-import { get_backend_url_sync } from '../../../src/utils/url.js'
-const backend_url = get_backend_url_sync();
+
+const backend_url = import.meta.env.VITE_API_BASE_URL;
 
 // 会话管理类
 class SessionManager {
