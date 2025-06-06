@@ -22,7 +22,7 @@ const fetchWithTimeout = async (url, timeoutMillis = 3000) => {
     }
 };
 
-const selectAvailableBackend = async () => {
+export const selectAvailableBackend = async () => {
     const urls = import.meta.env.VITE_API_BASE_URLS?.split(",").map(u => u.trim());
     if (!urls || urls.length === 0) return null;
 
