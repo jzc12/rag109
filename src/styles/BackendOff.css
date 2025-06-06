@@ -18,3 +18,15 @@
     font-size: 1.1em;
     margin-bottom: 10px;
 }
+
+.backend-off-container p a {
+    color: #007bff;
+    /* Blue color for links */
+    text-decoration: none;
+    /* Remove underline */
+}
+
+.backend-off-container p a:hover {
+    text-decoration: underline;
+    /* Add underline on hover */
+}
