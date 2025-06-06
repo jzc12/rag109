@@ -4,8 +4,8 @@ function createMessageElement(text, className) {
     messageDiv.textContent = text;
     return messageDiv;
 }
-import { get_backend_url } from '../../../src/utils/url.js'
-const backend_url = get_backend_url();
+
+const backend_url = import.meta.env.VITE_API_BASE_URL;
 
 // 会话管理类
 class SessionManager {
@@ -125,7 +125,7 @@ class UIManager {
         this.renderSessionList();
 
         // 向后端发起请求
-        const response = await fetch(`${backend_url}/llm`, {
+        const response = await fetch($`{backend_url}/llm`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
