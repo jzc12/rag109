@@ -5,7 +5,7 @@ function createMessageElement(text, className) {
     return messageDiv;
 }
 
-import { get_backend_url } from '../../../src/utils/urls.js'
+import { get_backend_url } from '../../../src/utils/url.js'
 
 const backend_url = get_backend_url;
 
