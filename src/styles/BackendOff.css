@@ -1,0 +1,20 @@
+.backend-off-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.backend-off-container h1 {
+    color: #f44336;
+    margin-bottom: 20px;
+}
+
+.backend-off-container p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
