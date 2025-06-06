@@ -5,7 +5,7 @@ function createMessageElement(text, className) {
     return messageDiv;
 }
 
-import { get_backend_url } from '../../../src/utils/url.js'
+const backend_url = import.meta.env.VITE_API_BASE_URL;
 
 // 会话管理类
 class SessionManager {
@@ -66,8 +66,7 @@ class SessionManager {
 
 // UI管理类
 class UIManager {
-    constructor(backendUrl) {
-        this.backendUrl = backendUrl;
+    constructor() {
         this.sessionManager = new SessionManager();
         this.scrollableList = document.getElementById('scrollable-list');
         this.messageList = document.getElementById('message-list');
@@ -126,7 +125,7 @@ class UIManager {
         this.renderSessionList();
 
         // 向后端发起请求
-        const response = await fetch(`${this.backendUrl}/llm`, {
+        const response = await fetch(`${backend_url}/llm`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -267,16 +266,46 @@ class UIManager {
             this.messageList.appendChild(this.welcomeContainer);
         }
     }
-
-    scrollToBottom() {
-        this.messageList.scrollTop = this.messageList.scrollHeight;
-    }
 }
 
-async function init() {
-    const backendUrl = await get_backend_url();
-    const uiManager = new UIManager(backendUrl);
-    uiManager.init();
+
+function init() {
+    // 启动时清除浏览器本地储存
+    localStorage.clear()
+
+    // 添加侧边栏切换逻辑
+    document.addEventListener('DOMContentLoaded', function () {
+        const hideSidebarButton = document.getElementById('hide-sidebar-button');
+        const showSidebarButton = document.getElementById('show-sidebar-button');
+        const totalContainer = document.querySelector('.total-container');
+
+        // 隐藏导航栏
+        hideSidebarButton.addEventListener('click', function () {
+            totalContainer.classList.add('sidebar-hidden');
+            showSidebarButton.style.display = 'block';
+        });
+
+        // 显示导航栏
+        showSidebarButton.addEventListener('click', function () {
+            totalContainer.classList.remove('sidebar-hidden');
+            showSidebarButton.style.display = 'none';
+        });
+
+        // 初始状态检查
+        function checkSidebarState() {
+            if (totalContainer.classList.contains('sidebar-hidden')) {
+                showSidebarButton.style.display = 'block';
+            } else {
+                showSidebarButton.style.display = 'none';
+            }
+        }
+
+        checkSidebarState();
+
+        // 初始化UI管理器
+        const uiManager = new UIManager();
+        uiManager.init();
+    });
 }
 
 init();
