@@ -10,16 +10,15 @@ function Root() {
   const [backendUrl, setBackendUrl] = useState(null);
 
   useEffect(() => {
-    selectAvailableBackend()
-      .then(url => {
-        setBackendUrl(url);
-        console.log("ac");
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error(error);
-        setLoading(false);
-      });
+    const fetchBackend = async () => {
+      await selectAvailableBackend()
+        .then(url => {
+          setBackendUrl(url);
+          console.log("ac");
+          setLoading(false);
+        });
+    };
+    fetchBackend();
   }, []);
 
   if (loading) {
