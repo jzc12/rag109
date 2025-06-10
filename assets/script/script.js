@@ -126,7 +126,7 @@ class UIManager {
         this.renderSessionList();
 
         // 向后端发起请求
-        const response = await fetch($`{backend_url}/llm`, {
+        const response = await fetch(`${backend_url}/llm`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
