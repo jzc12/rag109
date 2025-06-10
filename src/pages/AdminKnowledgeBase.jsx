@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/AdminKnowledgeBase.css';
 import { get_backend_url } from '../utils/url';
 
-const API_BASE_URL = get_backend_url();
 
 function AdminKnowledgeBase() {
   const [files, setFiles] = useState([]);
@@ -14,6 +13,7 @@ function AdminKnowledgeBase() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [uploadFile, setUploadFile] = useState(null);
+  const backendUrl = get_backend_url();
 
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ function AdminKnowledgeBase() {
     setIsLoading(true);
     setError('');
     try {
-      const response = await fetch(`${API_BASE_URL}/knowledgebase/list`);
+      const response = await fetch(`${backendUrl}/knowledgebase/list`);
       if (!response.ok) {
         throw new Error(`获取文件列表失败: ${response.statusText}`);
       }
@@ -69,7 +69,7 @@ function AdminKnowledgeBase() {
     setSelectedFile(filename);
     setIsEditing(false);
     try {
-      const response = await fetch(`${API_BASE_URL}/knowledgebase/${filename}`);
+      const response = await fetch(`${backendUrl}/knowledgebase/${filename}`);
       if (!response.ok) {
         throw new Error(`获取文件内容失败: ${response.statusText}`);
       }
@@ -105,7 +105,7 @@ function AdminKnowledgeBase() {
     setIsLoading(true);
     setError('');
     try {
-      const response = await fetch(`${API_BASE_URL}/knowledgebase/insert`, {
+      const response = await fetch(`${backendUrl}/knowledgebase/insert`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -134,7 +134,7 @@ function AdminKnowledgeBase() {
     setIsLoading(true);
     setError('');
     try {
-      const response = await fetch(`${API_BASE_URL}/knowledgebase/delete`, {
+      const response = await fetch(`${backendUrl}/knowledgebase/delete`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ file_name: filename }),
@@ -171,7 +171,7 @@ function AdminKnowledgeBase() {
     formData.append('files', uploadFile);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/knowledgebase/upload`, {
+      const response = await fetch(`${backendUrl}/knowledgebase/upload`, {
         method: 'POST',
         body: formData,
       });

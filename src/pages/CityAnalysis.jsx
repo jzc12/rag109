@@ -4,7 +4,6 @@ import * as echarts from 'echarts';
 import '../styles/CityAnalysis.css';
 import { get_backend_url } from '../utils/url';
 
-const API_BASE_URL = get_backend_url();
 
 function CityAnalysis() {
   const navigate = useNavigate();
@@ -12,6 +11,7 @@ function CityAnalysis() {
   const barChartRef = useRef(null);
   const [selectedCities, setSelectedCities] = useState(['北京', '上海']);
   const [activeTab, setActiveTab] = useState('radar');
+  const backendUrl = get_backend_url();
   const [cityData, setCityData] = useState({
     '北京': {
       薪资水平: 85,
@@ -96,7 +96,7 @@ function CityAnalysis() {
       setIsLoading(true);
       setError('');
       
-      const response = await fetch(`${API_BASE_URL}/city`, {
+      const response = await fetch(`${backendUrl}/city`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ city: cityName }),
